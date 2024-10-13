@@ -1,10 +1,7 @@
 {
   "name": "short-sweet",
   "version": "0.0.0",
-  "homepage": "https://BKarthik7.github.io/short-sweet",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
