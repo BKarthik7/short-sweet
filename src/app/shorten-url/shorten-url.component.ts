@@ -27,7 +27,6 @@ export class ShortenUrlComponent {
     const trimmedUrl = this.urlInput.trim();
     
     if (!/^https?:\/\/.+/.test(trimmedUrl)) {
-      console.log("Wrong Input");
       this.messageService.add({ severity: 'error', summary: 'Invalid URL', detail: 'Please enter a valid URL starting with http:// or https://' });
       return;
     }
@@ -47,12 +46,15 @@ export class ShortenUrlComponent {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'URL shortened successfully!' });
       },
       error: (error) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to shorten the URL!' });
+        if (error.status === 429) {
+          this.messageService.add({ severity: 'error', summary: 'Too Many Requests', detail: 'You have exceeded the number of requests allowed. Please try again later.' });
+        } else {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to shorten the URL!' });
+        }
       }
     });
   }
   
-
   copyToClipboard() {
     navigator.clipboard.writeText(this.shortenedUrl).then(() => {
       this.messageService.add({ severity: 'info', summary: 'Copied', detail: 'Shortened URL copied to clipboard!' });
