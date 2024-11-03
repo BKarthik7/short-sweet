@@ -1,31 +1,33 @@
 <p-toast></p-toast>
 
 <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-  <h2 class="text-3xl font-bold mb-6">URL Shortener</h2>
-  <div class="w-full max-w-md bg-white shadow-md rounded-lg p-6">
+  <h2 class="text-4xl font-bold mb-8 text-gray-800">URL Shortener</h2>
+  <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8 transition-transform transform hover:scale-105">
     <input
       [(ngModel)]="urlInput"
       placeholder="Enter a URL"
-      class="w-full p-2 border border-gray-300 rounded-md mb-4"
+      class="w-full p-3 border border-gray-300 rounded-md mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
       (keyup.enter)="shorten()"
     />
     <button
       (click)="shorten()"
-      class="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 transition duration-200"
+      class="w-full bg-blue-600 text-white font-semibold py-3 rounded-md hover:bg-blue-700 transition duration-200 shadow-md"
     >
       Shorten
     </button>
 
-    <div *ngIf="shortenedUrl" class="mt-4">
-      <p class="text-gray-700">
-        Shortened URL: 
-        <a [href]="shortenedUrl" target="_blank" class="text-blue-500 underline">{{ shortenedUrl }}</a>
-      </p>
+    <div *ngIf="shortenedUrl" class="mt-6 flex items-center justify-between p-4 bg-blue-50 border border-blue-200 rounded-md shadow-sm">
+      <span class="text-gray-700">Shortened URL:</span>
+      <a [href]="shortenedUrl" target="_blank" class="text-blue-600 underline hover:text-blue-800 ml-2">
+        {{ shortenedUrl }}
+      </a>
       <button
         (click)="copyToClipboard()"
-        class="mt-2 bg-green-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-600 transition duration-200"
+        class="ml-4 p-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-200 shadow-md"
+        aria-label="Copy URL"
       >
-        Copy URL
+        <!-- Placeholder for clipboard icon -->
+        📋
       </button>
     </div>
   </div>

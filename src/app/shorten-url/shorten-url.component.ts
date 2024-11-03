@@ -27,7 +27,7 @@ export class ShortenUrlComponent {
     const trimmedUrl = this.urlInput.trim();
     
     if (!/^https?:\/\/.+/.test(trimmedUrl)) {
-      console.log("Wrong");
+      console.log("Wrong Input");
       this.messageService.add({ severity: 'error', summary: 'Invalid URL', detail: 'Please enter a valid URL starting with http:// or https://' });
       return;
     }
