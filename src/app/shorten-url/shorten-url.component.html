@@ -7,6 +7,7 @@
       [(ngModel)]="urlInput"
       placeholder="Enter a URL"
       class="w-full p-2 border border-gray-300 rounded-md mb-4"
+      (keyup.enter)="shorten()"
     />
     <button
       (click)="shorten()"
